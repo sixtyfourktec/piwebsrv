@@ -8,13 +8,13 @@ piwebsrv is a simple web service providing a RESTful API to certain aspects of a
 Right now there are 2 modules available:
 
  1. music:
-    Provides information about the current playing song in the player software. This module has two entry points:
-    /v1/music/current - returns the current song information
-    /v1/music/covers/name - returns a cover image with the name 'name' when available
+    Provides information about the current playing song in the player software. This module has two entry points:  
+    `v1/music/current` - returns the current song information  
+    `v1/music/covers/name` - returns a cover image with the name 'name' when available  
  2. network:
-    Provides basic information about the network state. This module has two entry points:
-    /v1/network/world - returns the state of the public internet connection
-    /v1/network/people - returns the visibility state of certain devices in the network
+    Provides basic information about the network state. This module has two entry points:  
+    `v1/network/world` - returns the state of the public internet connection  
+    `v1/network/people` - returns the visibility state of certain devices in the network  
 
 ## Requirements
 
@@ -34,8 +34,8 @@ Create a people.cfg file for the network configuration and also put some web rad
 Change piwebsrv.service and point to the correct piwebsrv.py location. Install the systemd service file and start it:
 
 ```
-sudo systemctl enable $PWD/piwebsrv.service
-sudo systemctl start piwebsrv
+$ sudo systemctl enable $PWD/piwebsrv.service
+$ sudo systemctl start piwebsrv
 ```
 
 ## Usage
