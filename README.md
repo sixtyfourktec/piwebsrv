@@ -3,7 +3,7 @@ Copyright (C) 2016 Christian Pötzsch
 
 ## Content
 
-piwebsrv is a simple web service providing a RESTful API to certain aspects of a home network. It is intended to run on a Raspberry Pi with the RuneAudio or MoodeAudio music player software.
+piwebsrv is a simple web service providing a RESTful API to certain aspects of a home network. It is intended to run on a Raspberry Pi with the http://www.runeaudio.com/ or http://moodeaudio.org/ music player software.
 
 Right now there are 2 modules available:
 
