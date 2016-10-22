@@ -100,7 +100,7 @@ class music:
         coverfile = '-'.join(coverfile) + '.jpg'
 #        print coverfile
         # if there is a local cover file use that instead
-        if os.path.isfile(os.path.join(COVER_ROOT, coverfile)):
+        if os.path.isfile(os.path.join(self.path, COVER_ROOT, coverfile)):
             d['coverurl'] = 'http://{}:{}/v1/music/covers/{}'.format(self.ip, str(self.port), urllib.quote(coverfile))
         else:
             d['coverurl'] = 'http://{}/coverart/?v=1'.format(self.ip)
