@@ -84,26 +84,26 @@ class music:
         r_status = json.loads(self.redisclient.get('act_player_info'))
         if r_status['radioname'] != None:
             d['artist'] = 'Radio'
-            d['title'] = r_status['radioname']
+            d['title'] = r_status.get('radioname') if r_status['radioname'] != None else ''
             d['album'] = ''
         else:
-            d['artist'] = r_status.get('currentartist')
-            d['title'] = r_status.get('currentsong')
-            d['album'] = r_status.get('currentalbum')
+            d['artist'] = r_status.get('currentartist') if r_status.get('currentartist') != None else ''
+            d['title'] = r_status.get('currentsong') if r_status.get('currentsong') != None else ''
+            d['album'] = r_status.get('currentalbum') if r_status.get('currentalbum') != None else ''
         d['volume'] = int(r_status.get('volume'))
         d['mute'] = True if d['volume'] == 0 else False
         d['state'] = r_status.get('state')
+        d['coverurl'] = 'http://{}/coverart/?v=1'.format(self.ip)
         coverfile = []
         if d['artist'] != '': coverfile.append(d['artist'])
         if d['album'] != '': coverfile.append(d['album'])
         if d['title'] != '': coverfile.append(d['title'])
-        coverfile = '-'.join(coverfile) + '.jpg'
-#        print coverfile
-        # if there is a local cover file use that instead
-        if os.path.isfile(os.path.join(self.path, COVER_ROOT, coverfile)):
-            d['coverurl'] = 'http://{}:{}/v1/music/covers/{}'.format(self.ip, str(self.port), urllib.quote(coverfile))
-        else:
-            d['coverurl'] = 'http://{}/coverart/?v=1'.format(self.ip)
+        if len(coverfile) > 0:
+            coverfile = '-'.join(coverfile) + '.jpg'
+#            print coverfile
+            # if there is a local cover file use that instead
+            if os.path.isfile(os.path.join(self.path, COVER_ROOT, coverfile)):
+                d['coverurl'] = 'http://{}:{}/v1/music/covers/{}'.format(self.ip, str(self.port), urllib.quote(coverfile))
         return d
 
     def moode_current(self):
